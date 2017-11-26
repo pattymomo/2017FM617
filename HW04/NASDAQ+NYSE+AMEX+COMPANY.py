@@ -29,6 +29,3 @@ NYSE
 URL="http://www.nasdaq.com/screening/companies-by-industry.aspx?exchange=AMEX&render=download"
 AMEX = pd.read_csv(url)
 AMEX
-
-if _name_=="_main_"
-   app.run()
