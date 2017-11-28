@@ -14,36 +14,43 @@ def index():
 
 @app.route('/nyse')
 def nyse():
-    df = pd.read_csv("nyse.csv")
+    df = pd.read_csv("nyse.csv", encoding="utf-8", header=0)
+    df.sort_index(ascending=True)
     return df.to_html()
 
 @app.route('/nyse/<symbol>')
-def nyse(symbol):
-    df = pd.read_csv("nyse.csv")
-    goto = df.loc[df['Symbol']
-    return goto.to_html()
+def nyse_company(symbol):
+    df = pd.read_csv("nyse.csv",encoding="utf-8", header=0)
+    df.sort_index(ascending=True)
+    match = df.loc[df['Symbol'] == symbol.upper()]
+    return match.to_html()
 
 @app.route('/nasdaq')
-def nyse():
-    df = pd.read_csv("nasdaq.csv")
+def nasdaq():
+    df = pd.read_csv("nasdaq.csv", encoding="utf-8", header=0)
+    df.sort_index(ascending=True)
     return df.to_html()
 
 @app.route('/nasdaq/<symbol>')
-def nasdq(symbol):
-    df = pd.read_csv("nasdaq.csv")
-    goto = df.loc[df['Symbol']
-    return goto.to_html()
+def nasdaq_company(symbol):
+    df = pd.read_csv("nasdaq.csv",encoding="utf-8", header=0)
+    df.sort_index(ascending=True)
+    match = df.loc[df['Symbol'] == symbol.upper()]
+    return match.to_html()
 
 @app.route('/amex')
 def amex():
-    df = pd.read_csv("amex.csv")
+    df = pd.read_csv("amex.csv", encoding="utf-8", header=0)
+    df.sort_index(ascending=True)
     return df.to_html()
 
 @app.route('/amex/<symbol>')
-def nasdq(symbol):
-    df = pd.read_csv("amex.csv")
-    goto = df.loc[df['Symbol']
-    return goto.to_html()
+def amex_company(symbol):
+    df = pd.read_csv("amex.csv",encoding="utf-8", header=0)
+    df.sort_index(ascending=True)
+    match = df.loc[df['Symbol'] == symbol.upper()]
+    return match.to_html()
 
-if __name__ == '__main__':
+
+if __name__=="__main__":
     app.run()
