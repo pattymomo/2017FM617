@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import random
 
-
 app = Flask(__name__)
 
 def get_constellation(month, day):
@@ -12,6 +11,37 @@ def get_constellation(month, day):
         return constellations[month-1]
     else:
         return constellations[month]
+
+def mpl(name):
+
+    if name == "牡羊座":
+        return "2448"
+    elif name == "獅子座":
+        return "2353"
+    elif name == "雙子座":
+        return  "2454"
+    elif name == "射手座":
+        return  "2888"
+    elif name == "天蠍座":
+        return  "2883"
+    elif name == "雙魚座":
+        return  "2330"
+    elif name == "水瓶座":
+        return  "2347"
+    elif name == "處女座":
+        return  "2303"
+    elif name == "巨蟹座":
+        return  "1216"
+    elif name == "天秤座":
+        return  "2912"
+    elif name == "魔羯座":
+        return  "2311"
+    elif name == "金牛座":
+        return  "2891"
+    else:
+        return "ERROR"
+
+
 
 @app.route('/')
 def index():
@@ -24,13 +54,15 @@ def handle_data():
 
     try:
         name = get_constellation(int(month), int(day))
+        pic1 = mpl(name)
     except Exception as e:
         return "<h1>發生錯誤！！！</h1>" + "錯誤訊息如下：" + "<br>" + str(e.args)
 
     description1 = "您的星座是" + name
     description2 = "特質為" + random.choice(personalities[name])
+    description3 = "我們為您推薦的股票是 -- " + pic1
 
-    return render_template('results.html', name=name, description1=description1, description2=description2)
+    return render_template('results.html', name=name, description1=description1,description2=description2,description3 = description3,pic1=pic1)
 
 
 personalities = {}
