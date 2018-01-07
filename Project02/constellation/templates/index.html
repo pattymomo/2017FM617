@@ -2,8 +2,12 @@
 <head>
 </head>
 <body>
+<h1>針對星座提出投資建議</h1>
+
+請輸入您的出生月及出生日：
 <form action="{{ url_for('handle_data') }}" method="post">
-    <input type="text" name="projectFilepath">
+    <input type="text" name="month" placeholder="出生月"><br>
+    <input type="text" name="day" placeholder="出生日"><br>
     <input type="submit">
 </form>
 </body>
